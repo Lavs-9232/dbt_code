@@ -1,0 +1,18 @@
+version: 2
+sources: 
+   - name: datafeed_shared_schema
+     database: "{{'SALES'}}"
+     schema: RAW_SCHEMA
+     tables: 
+     - name: raw_customers_data
+     - name: raw_orders_data
+
+
+
+
+      
+
+      
+     
+             
+
