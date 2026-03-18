@@ -16,6 +16,8 @@ sources:
              - accepted_values:
                       values: ['returned','completed','shipped','return_pending','placed']
      - name: customers
+     - name: employees
+     - name: raw_products
 
 
 
