@@ -1,10 +1,14 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table',
+   pre_hook="truncate table {{ this }}") }}
 with customers as (
     select 
     id as customer_id,
     first_name,
     last_name
     from {{source('datafeed_shared_schema','raw_customers_data')}}
+),
+employees as (
+ select * from {{ref('emp_seed')}}
 ),
  orders as (
     select
@@ -28,10 +32,12 @@ final as(
    customers.customer_id,
    customers.first_name,
    customers.last_name,
+   employees.employee_id as is_employee,
    customer_orders.first_order_date,
    customer_orders.latest_order_date,
    coalesce(customer_orders.number_of_orders,0) as number_of_orders
    from customers
    left join customer_orders using(customer_id)
+   left join employees using(customer_id)
   )
   select * from final
