@@ -1,0 +1,30 @@
+version: 2
+sources: 
+   - name: datafeed_shared_schema
+     database: "{{'SALES'}}"
+     schema: RAW_SCHEMA
+     tables: 
+     - name: raw_customers_data
+     - name: raw_orders_data
+       columns:
+         - name: id
+           tests:
+            - unique
+            - not_null
+         - name: status
+           tests:
+             - accepted_values:
+                      values: ['returned','completed','shipped','return_pending','placed']
+     - name: customers
+     - name: employees
+     - name: raw_products
+
+
+
+
+      
+
+      
+     
+             
+
