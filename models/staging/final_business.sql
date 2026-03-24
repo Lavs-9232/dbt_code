@@ -1,5 +1,4 @@
-{{ config(materialized='table',
-   pre_hook="truncate table {{ this }}") }}
+{{ config(materialized='table')}}
 with customers as (
     select 
     id as customer_id,
